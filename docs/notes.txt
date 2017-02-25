@@ -1,0 +1,20 @@
+URL schema:
+-----------
+
+/games?rounds=Y&set=Z (PUT)
+- 201 created: liefert gameId 'X' zurück und startet ein spiel mit 'Y' runden und dem gegenstandsset Z (A = ohne Brunnen | B = mit Brunnen)
+
+/games/X/turns (GET)
+- 200 ok: liefert eine liste aller bisher gespielten züge zurück
+- 404 not found: wenn es kein spiel mit id x gibt
+
+/games/X/status (GET)
+- 200 ok: liefert 
+
+/games/X/turns?create=I (PUT)
+- 201 created:   - erstellt einen neuen zug ('I' = [stein | papier | schere] -> wenn set = A | [stein | papier | schere | brunnen] -> wenn set = B
+                 - liefert den zug des bots zurück sowie den status des aktuellen spiels (verbleibende runden, spielstand)
+- 404 not found: - wenn es kein spiel mit id 'X' gibt
+- 403 forbidden: - weißt die anfrage ab, wenn keine spielzüge verbleiben und das spiel beendet ist
+                 - weißt die anfrage ab, wenn ein falscher gegenstand angegeben wurde
+                 
